@@ -38,7 +38,7 @@ ext {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdk 32
     ndkVersion "24.0.8215888"
 
     externalNativeBuild {
@@ -67,7 +67,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdk 32
         versionCode 1
         versionName "1.9.0"
 
