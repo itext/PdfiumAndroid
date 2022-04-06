@@ -39,6 +39,31 @@ ext {
 
 android {
     compileSdkVersion 26
+    ndkVersion "24.0.8215888"
+
+    externalNativeBuild {
+        ndkBuild {
+            // Provides a relative path to your Android.mk build script.
+            path "src/main/jni/Android.mk"
+        }
+    }
+
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
+        pickFirst 'lib/x86/libc++_shared.so'
+
+        pickFirst 'lib/armeabi-v7a/libjniPdfium.so'
+        pickFirst 'lib/arm64-v8a/libjniPdfium.so'
+        pickFirst 'lib/x86_64/libjniPdfium.so'
+        pickFirst 'lib/x86/libjniPdfium.so'
+
+        pickFirst 'lib/armeabi-v7a/libmodpdfium.so'
+        pickFirst 'lib/arm64-v8a/libmodpdfium.so'
+        pickFirst 'lib/x86_64/libmodpdfium.so'
+        pickFirst 'lib/x86/libmodpdfium.so'
+    }
 
     defaultConfig {
         minSdkVersion 14
@@ -46,7 +71,7 @@ android {
         versionCode 1
         versionName "1.9.0"
 
-        buildConfigField("String","LIBRARY_VERSION_NAME","\"${defaultConfig.versionName}\"")
+        buildConfigField("String", "LIBRARY_VERSION_NAME", "\"${defaultConfig.versionName}\"")
 
     }
     buildTypes {
@@ -56,12 +81,6 @@ android {
         }
     }
 
-    sourceSets{
-        main {
-            jni.srcDirs = []
-            jniLibs.srcDir 'src/main/libs'
-        }
-    }
 }
 
 repositories {
